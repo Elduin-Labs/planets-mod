@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "planets:moon_dust",
+    "planets:mars_sand",
+    "planets:venus_ash",
+    "planets:pluto_snow"
+  ]
+}

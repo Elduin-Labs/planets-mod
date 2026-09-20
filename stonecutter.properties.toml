@@ -1,38 +1,37 @@
 loomx.loom_version="1.16-SNAPSHOT"
 
-mod.id = "modtemplate"
-mod.name = "Mod Template"
-mod.group = "com.example"
+
+mod.id = "planets"
+mod.name = "Planets"
+mod.group = "com.elduin"
 mod.version = "1.0.0"
 mod.channel_tag = ""
-mod.description = "Example Description"
+mod.description = "Space, with real planets. Build a rocket, fly up, and land on the Moon and Mars."
 mod.authors = ["Elduin"]
 mod.contributors = []
 mod.inception_year = "2026"
 mod.license.name = "MIT"
 mod.license.url = "https://opensource.org/licenses/MIT"
 mod.license.dist = "repo"
-mod.environment = "client_and_server"
-mod.sources_url = "https://github.com/Elduin-Labs/mod-template"
-mod.homepage_url = "https://github.com/Elduin-Labs/mod-template"
-mod.issues_url = "https://github.com/Elduin-Labs/mod-template/issues"
+mod.sources_url = "https://github.com/Elduin-Labs/planets-mod"
+mod.homepage_url = "https://github.com/Elduin-Labs/planets-mod"
+mod.issues_url = "https://github.com/Elduin-Labs/planets-mod/issues"
 mod.discord_url = ""
-
+mod.environment = "client_and_server"
 [[mod.pom.developers]]
 id = "elduin"
 name = "Elduin"
-url = "https://github.com/Elduin-Labs"
+url = "https://github.com/ghost"
 
-# KEEP IN SYNC with the version list in settings.gradle.kts.
 [fabric]
 deps.fabric-loader = "0.19.5"
 
-[fabric."1.21.11"]
-deps.minecraft = "1.21.11"
-deps.fabric-api = "0.141.6+1.21.11"
-deps.modmenu = "17.0.1-beta.1"
+[fabric."1.21.4"]
+deps.minecraft = "1.21.4"
+deps.fabric-api = "0.119.4+1.21.4"
+deps.modmenu = "13.0.4"
 
-[fabric."26.2"]
-deps.minecraft = "26.2"
-deps.fabric-api = "0.158.0+26.2"
-deps.modmenu = "20.0.1"
+[fabric."1.21.1"]
+deps.minecraft = "1.21.1"
+deps.fabric-api = "0.116.17+1.21.1"
+deps.modmenu = "11.0.4"

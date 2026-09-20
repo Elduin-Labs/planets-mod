@@ -33,6 +33,14 @@ platform {
 	}
 }
 
+// 1.21.2 renamed a pile of datapack folders (loot_tables -> loot_table, recipes
+// -> recipe, tags/blocks -> tags/block) and changed the shape of recipe keys and
+// of a biome's "carvers" field. Stonecutter only rewrites Java, so everything
+// under data/ lives in a per-version folder instead of the shared tree.
+sourceSets.named("main") {
+	resources.srcDir(rootProject.file("src/overrides/${sc.current.version}/resources"))
+}
+
 loom {
 	// Access wideners are optional. Drop a file at
 	// src/main/resources/aw/<mc-version>.accesswidener to use one; without it

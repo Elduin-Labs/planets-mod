@@ -1,81 +1,37 @@
-# Mod Template
+# Planets
 
-The starting point for Elduin's Minecraft mods. Every mod in
-[Elduin-Labs](https://github.com/Elduin-Labs) is created from this repo.
+Space, with real planets. Build a rocket, fly up, and land somewhere that isn't Earth.
 
-**Fabric only.** One source tree, built for more than one Minecraft version by
-[Stonecutter](https://stonecutter.kikugie.dev/).
+Craft a Rocket, put it down, and right-click it. A launch screen opens with
+everywhere you can go: **the Moon**, **Mars**, **Venus** and **Pluto**. Pick one
+and you're there — each planet is a whole world of its own, with its own rock,
+its own sky and its own ore to dig up. Your rocket lands with you, so you can
+always fly home again.
 
-Adapted from [rotgruengelb/stonecutter-mod-template](https://github.com/rotgruengelb/stonecutter-mod-template),
-with NeoForge and Forge removed.
+The catch is that none of them have any air. Craft an **Oxygen Tank** and keep
+it on you, or you'll run out of breath about two seconds after you arrive.
+
+Gravity is different everywhere too. On the Moon you jump about six times as
+high as on Earth. On Pluto you jump so high it's a problem. Venus is nearly
+Earth-normal, and also horrible.
+
+## What's on each planet
+
+| Planet | Gravity | What's there |
+|---|---|---|
+| The Moon | 17% | Moon Rock, Moon Dust, Moonstone |
+| Mars | 38% | Mars Rock, Mars Sand, Mars Crystal |
+| Venus | 90% | Venus Rock, Venus Ash, Sulfur |
+| Pluto | 6% | Pluto Ice, Pluto Snow, Frost Shard |
+
+## Crafting
+
+**Rocket** — five iron ingots around a redstone block and a furnace.
+
+**Oxygen Tank** — five iron ingots and two glass.
 
 ## Minecraft versions
 
-| version | Java |
-|---|---|
-| 1.21.11 | 21 |
-| 26.2 | 25 |
+Fabric, for Minecraft 1.21.1 and 1.21.4. You need Fabric API installed too.
 
-Gradle downloads whichever JDK a version needs, so only one JDK has to be
-installed locally.
-
-## Making a mod from this
-
-```bash
-gh repo create Elduin-Labs/<slug> --public --template Elduin-Labs/mod-template --clone
-cd <slug>
-python3 setup.py
-```
-
-`setup.py` asks for the mod id, name, package and so on, rewrites
-`stonecutter.properties.toml`, renames the mixin config and moves the Java
-sources into the right package. Delete it afterwards.
-
-## Building
-
-```bash
-./gradlew "Set active project to 1.21.11-fabric"
-./gradlew "1.21.11-fabric:build"
-```
-
-Switching is optional: each version subproject regenerates its own sources, so
-the jar is correct either way. It's there to keep the shared tree and the IDE in
-the version you're reading. Never hand-edit `.sc_active_version` to do it —
-Stonecutter tracks the tree's current form and that desyncs it.
-
-To build everything:
-
-```bash
-./gradlew build
-```
-
-Jars land in `versions/<version>-fabric/build/libs/`.
-
-## Adding a Minecraft version
-
-Four places, and they must agree:
-
-1. `settings.gradle.kts` — the Stonecutter version list
-2. `stonecutter.properties.toml` — a `[fabric."<version>"]` block with the
-   Minecraft, Fabric API and Mod Menu versions
-3. `.github/workflows/release.yml` — the `minecraft` matrix, with the right Java
-4. `CLAUDE.md` — the facts table
-
-Every version you add is another full copy of Minecraft to download, decompile
-and remap. Keep the list short.
-
-## A note on memory
-
-`gradle.properties` deliberately sets `org.gradle.parallel=false` and
-`org.gradle.workers.max=2`. Building Minecraft is memory-hungry, and building
-several versions at once on an 8 GB machine will exhaust RAM. Leave these alone.
-
-## Releasing
-
-Push a `v<version>` tag. `.github/workflows/release.yml` builds every version and
-uploads one Modrinth file per Minecraft version, using the organization's
-`MODRINTH_TOKEN` secret and the repo's `MODRINTH_PROJECT_ID` variable.
-
-## Licence
-
-MIT.
+Made by Elduin.

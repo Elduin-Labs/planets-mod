@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "planets:moonstone_ore",
+    "planets:mars_crystal_ore",
+    "planets:sulfur_ore",
+    "planets:frost_ore"
+  ]
+}

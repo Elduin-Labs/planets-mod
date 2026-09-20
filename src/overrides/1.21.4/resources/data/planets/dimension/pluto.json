@@ -1,0 +1,11 @@
+{
+  "type": "planets:pluto",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "planets:pluto",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "planets:pluto"
+    }
+  }
+}

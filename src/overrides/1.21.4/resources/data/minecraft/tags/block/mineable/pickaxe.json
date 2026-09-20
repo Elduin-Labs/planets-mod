@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "planets:moon_rock",
+    "planets:mars_rock",
+    "planets:venus_rock",
+    "planets:pluto_ice",
+    "planets:moonstone_ore",
+    "planets:mars_crystal_ore",
+    "planets:sulfur_ore",
+    "planets:frost_ore",
+    "planets:rocket"
+  ]
+}
