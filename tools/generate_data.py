@@ -2,10 +2,14 @@
 """Writes every json file the Planets mod needs.
 
 Assets are shared by both Minecraft versions. Data packs are not: 1.21.2
-renamed a pile of datapack folders (loot_tables -> loot_table, recipes ->
-recipe, tags/blocks -> tags/block) and changed the shape of recipe keys and of
-a biome's "carvers" field. So everything under data/ is written twice, into
-per-version override roots that build.fabric.gradle.kts adds as resource dirs.
+changed the shape of recipe ingredient keys ({"item": "x"} became just "x") and
+of a biome's "carvers" field (a map keyed by carving step became a plain list).
+So everything under data/ is written twice, into per-version override roots that
+build.fabric.gradle.kts adds as resource dirs.
+
+Folder names are NOT a difference: 1.21 already singularised them, so both
+versions want recipe/, loot_table/, advancement/ and tags/block/. Getting that
+wrong is silent — the files just never load, and the recipes never show up.
 """
 import json, os
 
@@ -26,7 +30,7 @@ def data_root(version):
 
 
 def old(version):
-    """True for the pre-1.21.2 datapack layout."""
+    """True for the pre-1.21.2 recipe and biome json shapes."""
     return version == "1.21.1"
 
 
@@ -182,6 +186,21 @@ def write_assets():
         "planets.message.no_rocket": "You need to be standing next to a rocket.",
         "planets.tooltip.oxygen_tank": "Lets you breathe on other planets. Just carry it.",
         "planets.tooltip.rocket": "Place it down, then right-click to fly.",
+
+        "planets.advancement.root.title": "Planets",
+        "planets.advancement.root.description": "Build a rocket. Space is right there.",
+        "planets.advancement.oxygen_tank.title": "Don't Hold Your Breath",
+        "planets.advancement.oxygen_tank.description": "Make an Oxygen Tank, because none of them have any air.",
+        "planets.advancement.moon.title": "One Small Step",
+        "planets.advancement.moon.description": "Stand on the Moon.",
+        "planets.advancement.mars.title": "The Red Planet",
+        "planets.advancement.mars.description": "Land on Mars.",
+        "planets.advancement.venus.title": "Hot Stuff",
+        "planets.advancement.venus.description": "Land on Venus, which is horrible.",
+        "planets.advancement.pluto.title": "All the Way Out",
+        "planets.advancement.pluto.description": "Land on Pluto, at the far end of everything.",
+        "planets.advancement.grand_tour.title": "Grand Tour",
+        "planets.advancement.grand_tour.description": "Set foot on all four planets.",
         "death.attack.planets.vacuum": "%1$s ran out of air",
     })
     w(os.path.join(ASSETS, "lang/en_us.json"), lang)
@@ -400,11 +419,11 @@ def rocket_recipe(version):
     return {
         "type": "minecraft:crafting_shaped",
         "category": "misc",
-        "pattern": [" I ", "IRI", "IFI"],
+        "pattern": ["FFF", "RRR", "DDD"],
         "key": {
-            "I": ingredient(version, "minecraft:iron_ingot"),
-            "R": ingredient(version, "minecraft:redstone_block"),
             "F": ingredient(version, "minecraft:furnace"),
+            "R": ingredient(version, "minecraft:redstone_block"),
+            "D": ingredient(version, "minecraft:redstone"),
         },
         "result": {"id": "planets:rocket", "count": 1},
     }
@@ -423,12 +442,97 @@ def tank_recipe(version):
     }
 
 
+# --------------------------------------------------------------------------
+# advancements
+# --------------------------------------------------------------------------
+ADVANCEMENT_BACKGROUND = "planets:textures/block/moon_rock.png"
+
+
+def display(icon, name, frame="task", background=None, announce=True):
+    d = {
+        "icon": {"id": icon, "count": 1},
+        "title": {"translate": "planets.advancement.%s.title" % name},
+        "description": {"translate": "planets.advancement.%s.description" % name},
+        "frame": frame,
+        "show_toast": True,
+        "announce_to_chat": announce,
+        "hidden": False,
+    }
+    if background:
+        d["background"] = background
+    return d
+
+
+def crafted(recipe):
+    return {"trigger": "minecraft:recipe_crafted", "conditions": {"recipe_id": recipe}}
+
+
+def landed_on(planet):
+    return {"trigger": "minecraft:changed_dimension", "conditions": {"to": "planets:" + planet}}
+
+
+def recipe_unlock(name, trigger_item):
+    """The hidden advancement that puts a recipe in the recipe book."""
+    return {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+            "has_the_item": {
+                "trigger": "minecraft:inventory_changed",
+                "conditions": {"items": [{"items": trigger_item}]},
+            },
+            "has_the_recipe": {
+                "trigger": "minecraft:recipe_unlocked",
+                "conditions": {"recipe": "planets:" + name},
+            },
+        },
+        "requirements": [["has_the_recipe", "has_the_item"]],
+        "rewards": {"recipes": ["planets:" + name]},
+    }
+
+
+def write_advancements(ns):
+    adv = os.path.join(ns, "advancement")
+
+    w(os.path.join(adv, "root.json"), {
+        "display": display("planets:rocket", "root", background=ADVANCEMENT_BACKGROUND),
+        "criteria": {"rocket": crafted("planets:rocket")},
+    })
+
+    w(os.path.join(adv, "oxygen_tank.json"), {
+        "parent": "planets:root",
+        "display": display("planets:oxygen_tank", "oxygen_tank"),
+        "criteria": {"tank": crafted("planets:oxygen_tank")},
+    })
+
+    for p in PLANETS:
+        w(os.path.join(adv, p["id"] + ".json"), {
+            "parent": "planets:root",
+            "display": display("planets:" + p["soil"], p["id"],
+                               frame="goal" if p["id"] in ("venus", "pluto") else "task"),
+            "criteria": {"landed": landed_on(p["id"])},
+        })
+
+    w(os.path.join(adv, "grand_tour.json"), {
+        "parent": "planets:root",
+        "display": display("planets:moonstone", "grand_tour", frame="challenge"),
+        "criteria": {p["id"]: landed_on(p["id"]) for p in PLANETS},
+        "requirements": [[p["id"]] for p in PLANETS],
+        "rewards": {"experience": 100},
+    })
+
+    w(os.path.join(adv, "recipes/rocket.json"),
+      recipe_unlock("rocket", "minecraft:redstone"))
+    w(os.path.join(adv, "recipes/oxygen_tank.json"),
+      recipe_unlock("oxygen_tank", "minecraft:glass"))
+
+
 def write_data(version):
     root = data_root(version)
     ns = os.path.join(root, "planets")
-    loot_dir = "loot_tables" if old(version) else "loot_table"
-    recipe_dir = "recipes" if old(version) else "recipe"
-    block_tag_dir = "blocks" if old(version) else "block"
+    # Singular in both — 1.21 renamed these, not 1.21.2.
+    loot_dir = "loot_table"
+    recipe_dir = "recipe"
+    block_tag_dir = "block"
 
     for p in PLANETS:
         w(os.path.join(ns, "dimension_type", p["id"] + ".json"), dimension_type(p))
@@ -448,6 +552,8 @@ def write_data(version):
 
     w(os.path.join(ns, recipe_dir, "rocket.json"), rocket_recipe(version))
     w(os.path.join(ns, recipe_dir, "oxygen_tank.json"), tank_recipe(version))
+
+    write_advancements(ns)
 
     mc = os.path.join(root, "minecraft/tags", block_tag_dir)
     w(os.path.join(mc, "mineable/pickaxe.json"),

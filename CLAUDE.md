@@ -35,10 +35,10 @@ list in the generator script (see below), and three new block textures.
 
 ## The datapack is written twice, on purpose
 
-1.21.2 renamed a pile of datapack folders (`loot_tables` -> `loot_table`,
-`recipes` -> `recipe`, `tags/blocks` -> `tags/block`) and changed the shape of
-recipe ingredient keys and of a biome's `carvers` field. Stonecutter only
-rewrites Java, not json, so **everything under `data/` lives per-version**:
+1.21.2 changed the shape of recipe ingredient keys (`{"item": "x"}` became just
+`"x"`) and of a biome's `carvers` field (a map keyed by carving step became a
+plain list). Stonecutter only rewrites Java, not json, so **everything under
+`data/` lives per-version**:
 
     src/overrides/1.21.1/resources/data/...
     src/overrides/1.21.4/resources/data/...
@@ -46,6 +46,15 @@ rewrites Java, not json, so **everything under `data/` lives per-version**:
 `build.fabric.gradle.kts` adds the matching folder as a resource dir. Assets
 (textures, models, lang) are shared in `src/main/resources` — `assets/planets/items/`
 is the 1.21.4+ item model format and 1.21.1 simply ignores the folder.
+
+**Folder names are not a difference.** 1.21 already singularised them, so both
+versions want `recipe/`, `loot_table/`, `advancement/` and `tags/block/`. The
+plural names were used here at first and the failure is completely silent — the
+files simply never load, so recipes don't appear and blocks drop nothing. If
+something in `data/` seems to be ignored, check the folder name against the
+vanilla jar before anything else:
+
+    unzip -l ~/.gradle/caches/fabric-loom/<ver>/minecraft-client.jar | grep data/minecraft/
 
 Both trees are written by a generator script rather than by hand. If you change
 one, change the generator, not the json.

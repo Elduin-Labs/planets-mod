@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "id": "planets:rocket",
+      "count": 1
+    },
+    "title": {
+      "translate": "planets.advancement.root.title"
+    },
+    "description": {
+      "translate": "planets.advancement.root.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "planets:textures/block/moon_rock.png"
+  },
+  "criteria": {
+    "rocket": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "planets:rocket"
+      }
+    }
+  }
+}

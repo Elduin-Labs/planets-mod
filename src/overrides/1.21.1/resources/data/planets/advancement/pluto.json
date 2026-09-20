@@ -1,0 +1,27 @@
+{
+  "parent": "planets:root",
+  "display": {
+    "icon": {
+      "id": "planets:pluto_snow",
+      "count": 1
+    },
+    "title": {
+      "translate": "planets.advancement.pluto.title"
+    },
+    "description": {
+      "translate": "planets.advancement.pluto.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "landed": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "planets:pluto"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "parent": "planets:root",
+  "display": {
+    "icon": {
+      "id": "planets:mars_sand",
+      "count": 1
+    },
+    "title": {
+      "translate": "planets.advancement.mars.title"
+    },
+    "description": {
+      "translate": "planets.advancement.mars.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "landed": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "planets:mars"
+      }
+    }
+  }
+}

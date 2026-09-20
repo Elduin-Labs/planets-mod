@@ -1,0 +1,62 @@
+{
+  "parent": "planets:root",
+  "display": {
+    "icon": {
+      "id": "planets:moonstone",
+      "count": 1
+    },
+    "title": {
+      "translate": "planets.advancement.grand_tour.title"
+    },
+    "description": {
+      "translate": "planets.advancement.grand_tour.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "moon": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "planets:moon"
+      }
+    },
+    "mars": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "planets:mars"
+      }
+    },
+    "venus": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "planets:venus"
+      }
+    },
+    "pluto": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "planets:pluto"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "moon"
+    ],
+    [
+      "mars"
+    ],
+    [
+      "venus"
+    ],
+    [
+      "pluto"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
+}

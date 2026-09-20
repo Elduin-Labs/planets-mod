@@ -1,0 +1,27 @@
+{
+  "parent": "planets:root",
+  "display": {
+    "icon": {
+      "id": "planets:oxygen_tank",
+      "count": 1
+    },
+    "title": {
+      "translate": "planets.advancement.oxygen_tank.title"
+    },
+    "description": {
+      "translate": "planets.advancement.oxygen_tank.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tank": {
+      "trigger": "minecraft:recipe_crafted",
+      "conditions": {
+        "recipe_id": "planets:oxygen_tank"
+      }
+    }
+  }
+}

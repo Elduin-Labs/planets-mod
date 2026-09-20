@@ -28,9 +28,19 @@ Earth-normal, and also horrible.
 
 ## Crafting
 
-**Rocket** — five iron ingots around a redstone block and a furnace.
+**Rocket** — a full crafting grid:
+
+    Furnace         Furnace         Furnace
+    Redstone Block  Redstone Block  Redstone Block
+    Redstone Dust   Redstone Dust   Redstone Dust
 
 **Oxygen Tank** — five iron ingots and two glass.
+
+## Advancements
+
+Craft a rocket and you get **Planets**. After that there's one for the Oxygen
+Tank, one for landing on each of the four planets, and **Grand Tour** for
+standing on all four.
 
 ## Minecraft versions
 

@@ -1,0 +1,27 @@
+{
+  "parent": "planets:root",
+  "display": {
+    "icon": {
+      "id": "planets:moon_dust",
+      "count": 1
+    },
+    "title": {
+      "translate": "planets.advancement.moon.title"
+    },
+    "description": {
+      "translate": "planets.advancement.moon.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "landed": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "planets:moon"
+      }
+    }
+  }
+}
