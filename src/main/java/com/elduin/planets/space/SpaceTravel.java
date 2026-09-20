@@ -119,9 +119,9 @@ public final class SpaceTravel {
 		double z = landing.getZ() + 0.5;
 		player.fallDistance = 0.0F;
 		//? if 1.21.1 {
-		player.teleportTo(destination, x, y, z, player.getYRot(), player.getXRot());
-		//? } else {
-		/*player.teleportTo(destination, x, y, z, java.util.Set.of(), player.getYRot(), player.getXRot(), true);
-		*///? }
+		/*player.teleportTo(destination, x, y, z, player.getYRot(), player.getXRot());
+		*///? } else {
+		player.teleportTo(destination, x, y, z, java.util.Set.of(), player.getYRot(), player.getXRot(), true);
+		//? }
 	}
 }

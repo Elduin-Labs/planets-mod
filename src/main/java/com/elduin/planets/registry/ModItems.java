@@ -58,12 +58,12 @@ public final class ModItems {
 	private static void blockItem(Block block) {
 		ResourceLocation key = BuiltInRegistries.BLOCK.getKey(block);
 		//? if 1.21.1 {
-		BlockItem item = new BlockItem(block, new Item.Properties());
-		//? } else {
-		/*BlockItem item = new BlockItem(block, new Item.Properties()
+		/*BlockItem item = new BlockItem(block, new Item.Properties());
+		*///? } else {
+		BlockItem item = new BlockItem(block, new Item.Properties()
 				.useBlockDescriptionPrefix()
 				.setId(ResourceKey.create(Registries.ITEM, key)));
-		*///? }
+		//? }
 		Registry.register(BuiltInRegistries.ITEM, key, item);
 		ALL.add(item);
 	}
@@ -71,10 +71,10 @@ public final class ModItems {
 	private static Item simple(String name) {
 		ResourceLocation key = PlanetsMod.id(name);
 		//? if 1.21.1 {
-		Item item = new Item(new Item.Properties());
-		//? } else {
-		/*Item item = new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, key)));
-		*///? }
+		/*Item item = new Item(new Item.Properties());
+		*///? } else {
+		Item item = new Item(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, key)));
+		//? }
 		Registry.register(BuiltInRegistries.ITEM, key, item);
 		ALL.add(item);
 		return item;

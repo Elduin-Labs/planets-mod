@@ -15,6 +15,8 @@ Space, with real planets.
   which is a lot more jumping than you expect.
 - None of them have any air. Craft an **Oxygen Tank** and keep it on you.
 - Your rocket lands with you on a little pad, so you can always fly home.
+- A **Create Test World** button on the title screen. It opens world creation
+  with Superflat on and the Redstone Ready preset already picked.
 - New blocks: Moon Rock, Moon Dust, Mars Rock, Mars Sand, Venus Rock, Venus Ash,
   Pluto Ice, Pluto Snow — and an ore on each planet that drops Moonstone, Mars
   Crystal, Sulfur or a Frost Shard.

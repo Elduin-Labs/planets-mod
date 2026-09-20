@@ -91,11 +91,11 @@ public final class SpaceEffects {
 
 	private static DamageSource vacuum(ServerPlayer player) {
 		//? if 1.21.1 {
-		return new DamageSource(player.level().registryAccess()
-				.registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(VACUUM));
-		//? } else {
 		/*return new DamageSource(player.level().registryAccess()
+				.registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(VACUUM));
+		*///? } else {
+		return new DamageSource(player.level().registryAccess()
 				.lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(VACUUM));
-		*///? }
+		//? }
 	}
 }

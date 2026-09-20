@@ -42,6 +42,12 @@ Craft a rocket and you get **Planets**. After that there's one for the Oxygen
 Tank, one for landing on each of the four planets, and **Grand Tour** for
 standing on all four.
 
+## Create Test World
+
+There's a **Create Test World** button in the bottom-left of the title screen.
+It opens world creation with Superflat already on and the Redstone Ready preset
+already picked, so a flat world for messing about is two clicks away.
+
 ## Minecraft versions
 
 Fabric, for Minecraft 1.21.1 and 1.21.4. You need Fabric API installed too.

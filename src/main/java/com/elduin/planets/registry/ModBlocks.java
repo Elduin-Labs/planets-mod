@@ -95,10 +95,10 @@ public final class ModBlocks {
 	                         BlockBehaviour.Properties properties) {
 		ResourceLocation key = PlanetsMod.id(name);
 		//? if 1.21.1 {
-		Block block = factory.apply(properties);
-		//? } else {
-		/*Block block = factory.apply(properties.setId(ResourceKey.create(Registries.BLOCK, key)));
-		*///? }
+		/*Block block = factory.apply(properties);
+		*///? } else {
+		Block block = factory.apply(properties.setId(ResourceKey.create(Registries.BLOCK, key)));
+		//? }
 		Registry.register(BuiltInRegistries.BLOCK, key, block);
 		ALL.add(block);
 		return block;

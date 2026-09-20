@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 public class PlanetsMod {
 
 	public static final String MOD_ID = /*$ mod_id*/ "planets";
-	public static final String MOD_VERSION = /*$ mod_version*/ "1.0.0";
+	public static final String MOD_VERSION = /*$ mod_version*/ "2.0";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Planets";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 

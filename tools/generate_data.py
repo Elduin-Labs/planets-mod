@@ -186,6 +186,8 @@ def write_assets():
         "planets.message.no_rocket": "You need to be standing next to a rocket.",
         "planets.tooltip.oxygen_tank": "Lets you breathe on other planets. Just carry it.",
         "planets.tooltip.rocket": "Place it down, then right-click to fly.",
+        "planets.button.test_world": "Create Test World",
+        "planets.button.test_world.tooltip": "Opens world creation with Superflat and the Redstone Ready preset already set.",
 
         "planets.advancement.root.title": "Planets",
         "planets.advancement.root.description": "Build a rocket. Space is right there.",
