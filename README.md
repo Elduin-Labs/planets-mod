@@ -1,3 +1,5 @@
+<img src="src/main/resources/assets/icon.png" width="128" align="right">
+
 # Planets
 
 Space, with real planets. Build a rocket, fly up, and land somewhere that isn't Earth.
