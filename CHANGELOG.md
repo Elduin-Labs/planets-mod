@@ -1,7 +1,7 @@
 <!-- Written by hand, in plain words, by the share-it skill.
      The release workflow feeds this whole file to Modrinth as the changelog. -->
 
-## 1.0.0 — the first one
+## 2.0 — the first one
 
 Space, with real planets.
 
